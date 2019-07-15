@@ -1,0 +1,253 @@
+<html>
+  <body>
+    <div class="container-fluid">
+
+      <!--bootstrap row with drop down menu in it-->
+      <div class="row">
+        <div class="col-xs-5"></div>
+        <div class="col-xs-4">
+          <!--drop-down menu itself-->
+          <select onchange="whoTaking(this)">
+            <!--drop-down menu options give back information to webpage's JS via value-->
+            <option value="">Who is taking ths quiz?</option>
+            <option value=" Anna">Anna</option>
+            <option value=" Beto">Beto</option>
+            <option value=" Charlie">Charlie</option>
+          </select>
+        </div>
+      </div>
+
+      <!--row for the greeting box-->
+      <div class="row">
+        <div class="col-xs-12">
+          <!--displays one message when not hovered over, one message when hovered over-->
+          <!--this message includes the name selected, if any, from drop down box!-->
+          <h1 onmouseover="hoverGreeting(this)" onmouseout="hoverOutgoing(this)">UNIT CIRCLE FUN</h1>
+        </div>
+      </div>
+
+      <!--form where there is more open interactivity-->
+      <form>
+
+        <!--row for showing four most popular unit circle angles-->
+        <div class="row">
+          <div class="col-xs-5"></div>
+          <div class="col-xs-5">
+            <!--picture that has the transparent canvas drawn over the top of it-->
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3249081/Screen%20Shot%202019-06-15%20at%207.59.09%20PM.png" id="canvassed" />
+
+            <!--canvas tag allows us to draw in a box... this is where angles are drawn over the unit circle picture-->
+            <!--this code retrieved from: https://www.w3schools.com/tags/tryit.asp?filename=tryhtml5_canvas_lineto2-->
+            <canvas id="myCanvas" width="345" height="300" style="border:1px solid #7bf;"></canvas>
+
+            <!--designated angle option apppears in red by calling the drawAngle method when clicked-->
+            <label for="zeroApplet" id="zero0">
+              <!--call the drawAngle function for a 90 degree angle-->
+              <!--cleared is false, so the whole canvas isn't cleared-->
+              <input id="zeroApplet" type="radio" name="unitZero" onclick="drawAngle(90, false)">
+              <!--degrees and pi should be written with the correct symbols-->
+              90&deg; = &pi;/2 radians
+            </label>
+
+            <label for="zeroApplet" id="zero1">
+              <input id="zeroApplet" type="radio" name="unitZero" onclick="drawAngle(180, false)">
+              180&deg; = &pi; radians
+            </label>
+
+            <label for="zeroApplet" id="zero2">
+              <input id="zeroApplet" type="radio" name="unitZero" onclick="drawAngle(270, false)">
+              270&deg; = 3&pi;/2 radians
+            </label>
+
+            <label for="zeroApplet" id="zero3">
+              <input id="zeroApplet" type="radio" name="unitZero" onclick="drawAngle(0, false)">
+              0&deg; or 360&deg; = 0&pi; or 2&pi; radians
+            </label>
+
+          </div>
+        </div>
+
+        <!--this row is for the canvas clearing button-->
+        <div class="row">
+          <div class="col-xs-*">
+            <!--hover over the button to clear all of the angles drawn on the canvas-->
+            <!--do so by calling the drawAngle function but with true for the argument cleared-->
+            <button id="clearButton" class="btn btn-block btn-primary" onmouseover="drawAngle(0, true)">
+              HOVER CLEAR (do not click)
+            </button>
+          </div>
+        </div>
+
+        <!--this just puts a white line between this section and the next-->
+        <hr>
+
+        <!--row for angle conversion buttons and outputs-->
+        <div class="row">
+          <!--empty spacing div for 2 of 12 bootstrap columns-->
+          <div class="col-xs-2"></div>
+
+          <!--div for buttons: 4 of 12 bootstrap columns-->
+          <div class="col-xs-4">
+            <!--blank to type an angle measurement in has "Angle to convert?" written in the blank-->
+            <!--calls setAngleToConvert() function when that blank is changed i.e. run JS immediately, based on what is entered in blank-->
+            <input type="text" id="angleConversionSpot" placeholder="Angle to convert?" onchange="setAngleToConvert()">
+
+            <!--if you hover over radians button, call convertAngle function with false as argument degrees, since it's a radian measurement-->
+            <button type="radians" onmouseover="convertAngle(false)">
+              (radians)
+            </button>
+            <!--if you hover over degrees button, call convertAngle function with true as argument degrees, since it's a degree measurement-->
+            <button type="degrees" onmouseover="convertAngle(true)">
+              degrees
+            </button>
+
+            <!--if you hover over the red danger button, call the clearConversions() function-->
+            <!--thus getting rid of all conversions from the JS data and then from the HTML output-->
+            <button type="deletion" class="btn-danger" onmouseover="clearConversions()">
+              Clear Conversions
+            </button>
+          </div>
+
+          <!--where the conversions get written gets 6 of 12 bootstrap columns-->
+          <div class="col-xs-6">
+            <!--the conversions get written within this paragraph tag via JS functions-->
+            <p id="convertedAngle">Hover over button to add conversion to list: </p>
+          </div>
+        </div>
+
+        <hr>
+
+        <!--row for question A-->
+        <div class="row">
+          <div class="col-xs-8">
+            <!--randomly generated (just the angle in degrees is random) question is written here via JS-->
+            <p id="whereDegreesGoes"></p>
+          </div>
+
+          <div class="col-xs-4">
+            <!--empty graph of unit circle-->
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3249081/Screen%20Shot%202019-06-15%20at%207.59.09%20PM.png" />
+
+            <!--radio button answers, one for each quadrant of Cartesian plane-->
+            <label for="qI" class="A0">
+              <input id="qI" type="radio" name="quadrant">
+              Quadrant I
+            </label>
+
+            <label for="qII" class="A1">
+              <input id="qII" type="radio" name="quadrant">
+              Quadrant II
+            </label>
+
+            <label for="qIII" class="A2">
+              <input id="qIII" type="radio" name="quadrant">
+              Quadrant III
+            </label>
+
+            <label for="qIV" class="A3">
+              <input id="qIV" type="radio" name="quadrant">
+                Quadrant IV
+            </label>
+
+          </div>
+        </div>
+
+        <hr>
+
+        <!--row for question B-->
+        <div class="row">
+
+          <!--question B is really five T/F questions asked within 8 of 12 bootstrap columns-->
+          <div class="col-xs-8">
+            <p>B) Check all of the following angles that are equivalent to 270&deg;:</p>
+          </div>
+
+          <!--question B is answered within 4 of 12 bootstrap columns-->
+          <div class="col-xs-4">
+
+            <!--each answer is a checkbox, so zero to all five can be clicked-->
+            <!--first question: is 810 degrees the same as 270 degrees? if so, click the box-->
+            <label>
+              <input type="checkbox" name="Bmatches" id="B0">
+              810&deg;
+            </label>
+
+            <label>
+              <input type="checkbox" name="Bmatches" id="B1">
+              14&pi;/4
+            </label>
+
+            <label>
+              <input type="checkbox" name="Bmatches" id="B2">
+              -90&deg;
+            </label>
+
+            <label>
+              <input type="checkbox" name="Bmatches" id="B3">
+              3&pi;/4
+            </label>
+
+            <label>
+              <input type="checkbox" name="Bmatches" id="B4">
+              6&pi;/4
+            </label>
+
+          </div>
+        </div>
+
+        <hr>
+
+        <!--row for question C-->
+        <div class="row">
+
+          <!--question C is really four T/F questions asked within 8 of 12 bootstrap columns-->
+          <div class="col-xs-8">
+            <p>C) In which quadrants is cos(&#x0398) positive? Check all that apply:</p>
+          </div>
+
+          <!--question C is answered within 4 of 12 bootstrap columns-->
+          <div class="col-xs-4">
+
+            <!--same img src combo here of empty circle on graph-->
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3249081/Screen%20Shot%202019-06-15%20at%207.59.09%20PM.png" />
+
+            <!--each answer is a checkbox, so zero to all four can be clicked-->
+            <!--leave the quadrants selected in which cos(theta) > 0-->
+            <label class="A0">
+              <input type="checkbox" name="Cquadrant" id="C0">
+              Quadrant I
+            </label>
+
+            <label class="A1">
+              <input type="checkbox" name="Cquadrant" id="C1">
+              Quadrant II
+            </label>
+
+            <label class="A2">
+              <input type="checkbox" name="Cquadrant" id="C2">
+              Quadrant III
+            </label>
+
+            <label class="A3" id="moveC3">
+              <input type="checkbox" name="Cquadrant" id="C3">
+              Quadrant IV
+            </label>
+
+          </div>
+        </div>
+
+        <hr>
+
+        <!--row for the button that submits the quiz-->
+        <div class="row">
+          <div class="col-xs-5"></div>
+          <div class="col-xs-4">
+            <!--the button calls the count() function when clicked-->
+            <button onclick="count()">Click when finished with the quiz!</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </body>
+</html>

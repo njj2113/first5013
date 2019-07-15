@@ -1,0 +1,121 @@
+/*the whole page has a light blue background*/
+body {
+  background-color: #7bf;
+}
+
+/*the heading is purple, is padded 20px on all sides, has a thick, solid, and purple border, and is centered. I added 40px margin to the bottom to make radio buttons fit better*/
+h1 {
+  color: #a0a;
+  padding: 20px;
+  border: 6px solid #a0a;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/*all question text is 20px, gray, and centered*/
+p {
+  font-size: 20px;
+  color: #555;
+  text-align: center;
+  opacity: 10%;
+}
+
+/*90 degree angle button is moved up and left*/
+#zero0 {
+  position: relative;
+  top: -160px;
+  right: 220px;
+}
+
+/*180 degree angle button is moved left*/
+#zero1 {
+  position: relative;
+  right: 570px;
+}
+
+/*270 degree angle button is moved right*/
+#zero2 {
+  position: relative;
+  right: -70px;
+}
+
+/*0/360 degree angle button is moved up and right*/
+#zero3 {
+  position: relative;
+  top: -160px;
+  right: -160px;
+}
+
+/*quadrant I buttons are moved up and right*/
+.A0 {
+  position: relative;
+  top: -90px;
+  right: -7px;
+}
+
+/*quadrant II buttons are moved up and left*/
+.A1 {
+  position: relative;
+  top: -252px;
+  right: 100px;
+}
+
+/*quadrant III buttons are moved up and left*/
+.A2 {
+  position: relative;
+  top: -80px;
+  right: 200px;
+}
+
+/*quadrant IV buttons are moved up and right*/
+.A3 {
+  position: relative;
+  top: -80px;
+  right: -115px;
+}
+
+/*all images (just unit circles) are 300 by 300 with solid black borders*/
+img {
+  width: 300px;
+  height: 300px;
+  border: 2px dotted black;
+}
+
+/*canvas is moved left to draw over the picture of the unit circle*/
+#myCanvas {
+  position: absolute;
+  right: 240px;
+}
+
+/*this moves the picture under the canvas*/
+#canvassed {
+  position: relative;
+}
+
+/*quadrant IV's button is 115px more rightward in question C than in question B, at least to get the output to look similar*/
+#moveC3 {
+  right: -115px;
+}
+
+/*buttons have red text when you hover over them*/
+button:hover {
+  color: red;
+}
+
+/*conversions are blue if they are degree outputs*/
+.degreeConversions {
+  color: blue;
+}
+
+/*conversions are green if they are radian outputs*/
+.radianConversions {
+  color: green;
+}
+
+/*all conversions are centered below the output text spot, have a set width, and have a gray dotted border and background*/
+.conversions {
+  width: 400px;
+  margin: auto;
+  border: 1px dotted rgba(85,85,85, 0.6);
+  background-color: rgba(85,85,85, 0.1);
+}
